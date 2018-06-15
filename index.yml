@@ -1,0 +1,52 @@
+This is the Twitter Elastic Search API
+    Call this api passing a search parameter and get back relevant tweets
+    ---
+    tags:
+      - Twitter Elasticsearch API
+    parameters:
+      - name: searchparam
+        in: query
+        type: string
+        required: true
+        description: The keyword you want to search
+      - name: from
+        in: query
+        type: string
+        required: false
+        description: the start date filter
+      - name: to
+        in: query
+        type: string
+        required: false
+        description: the end date filter
+    responses:
+      500:
+        description: Something Went Wrong
+      200:
+        description: A response with number of relevant hits and respective Tweets
+        schema:
+          id: search api
+          properties:
+            end_date:
+              type: string
+              description: the end date filter
+              default: '3000-01-01 (YYYY-mm-dd)'
+            start_date:
+              type: string
+              description: the start date filter
+              default: '1857-01-01(YYYY-mm-dd)'
+            search_param:
+              type: string
+              description: the parameter that was searched for
+              default: 'realmadrid'
+            total_hits:
+              type: number
+              description: total number of valid hits matching the search parameters
+              default: 2
+            tweets:
+              type: array
+              description: The valid hits returned by Elastic Search
+              items:
+                type: string
+              default: ["RT @realmadrid: Comunicado oficial: Julen Lopetegui será el entrenador del #RealMadrid tras la celebración del Mundial de Rusia 2018.\n\nhttp…",
+        "RT @realmadriden: Official Announcement: Julen Lopetegui will be the #RealMadrid coach after the celebration of the 2018 World Cup.\n\nhttps:…",]
